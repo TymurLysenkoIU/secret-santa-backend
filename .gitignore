@@ -12,3 +12,7 @@ target/
 # JVM
 
 .jvmopts
+
+# Config
+
+**/resources/**/*.local.conf
