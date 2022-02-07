@@ -41,7 +41,21 @@ If you are using IntelliJ IDEA:
 
 ## Project details
 
+### API
+
 - [ ] TODO: the project uses tapir to define API and interprets the description into zio-http server
+
+### Configs
+
+- [ ] TODO: describe `application.conf` and `application.local.conf`
+
+### Database interaction
+
+- [ ] TODO: the app is designed to connect to postgres and run queries against it
+
+#### Quill
+
+- [ ] TODO: quill is used to write queries, which are compiled to postgres SQL and executed
 
 ## CI
 

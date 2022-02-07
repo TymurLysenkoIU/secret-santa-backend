@@ -10,12 +10,13 @@ object Dependencies {
     val zio = "1.0.13"
     val zioPrelude = "1.0.0-RC10"
     val zioMagic = "0.3.11"
-    val zioConfig = "2.0.0"
     val zioLogging = "0.5.14"
     val zioZmx = "0.0.11"
     val zioJson = "0.3.0-RC3"
+    val pureConfig = "0.17.1"
     val monocle = "3.1.0"
     val refined = "0.9.28"
+    val refinedPureconfig = "0.9.28"
     val quill = "3.16.0"
   }
 
@@ -45,18 +46,6 @@ object Dependencies {
 
   private lazy val zioMagic = "io.github.kitlangton" %% "zio-magic" % V.zioMagic
 
-  // ZIO — Config
-  private lazy val zioConfig = "dev.zio" %% "zio-config" % V.zioConfig
-
-  private lazy val zioConfigMagnolia =
-    "dev.zio" %% "zio-config-magnolia" % V.zioConfig
-
-  private lazy val zioConfigRefined =
-    "dev.zio" %% "zio-config-refined" % V.zioConfig
-
-  private lazy val zioConfigTypesafe =
-    "dev.zio" %% "zio-config-typesafe" % V.zioConfig
-
   // ZIO — Logging
   private lazy val zioLogging = "dev.zio" %% "zio-logging" % V.zioLogging
 
@@ -64,11 +53,14 @@ object Dependencies {
   private lazy val zioZmx = "dev.zio" %% "zio-zmx" % V.zioZmx
 
   // ZIO — JSON
-
   private lazy val zioJson =
     "dev.zio" %% "zio-json" % V.zioJson excludeAll ExclusionRule(
       "dev.zio"
     )
+
+  // Pureconfig
+  private lazy val pureconfig =
+    "com.github.pureconfig" %% "pureconfig" % V.pureConfig
 
   // FP
   // FP — Optics
@@ -79,6 +71,9 @@ object Dependencies {
 
   // FP — Refinement types
   private lazy val refined = "eu.timepit" %% "refined" % V.refined
+
+  private lazy val refinedPureconfig =
+    "eu.timepit" %% "refined-pureconfig" % V.refinedPureconfig
 
   // DB
   // DB — Quill
@@ -101,11 +96,9 @@ object Dependencies {
     tapirJsonZio,
     tapirRefined,
     zioMagic,
-    zioConfig,
-    zioConfigMagnolia,
-    zioConfigRefined,
-    zioConfigTypesafe,
     zioJson,
+    pureconfig,
+    refinedPureconfig,
     postgresJdbc
   )
 
