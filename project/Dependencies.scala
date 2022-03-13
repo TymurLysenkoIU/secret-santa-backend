@@ -3,7 +3,7 @@ import sbt._
 object Dependencies {
 
   private object V {
-    val tapirZioHttpServer = "0.20.0-M9"
+    val tapirZioHttpServer = "0.20.1"
     val tapirSharedZio = "1.3.2"
     val tapirJsonZio = "0.20.0-M9"
     val tapirRefined = "0.20.0-M9"
@@ -17,7 +17,8 @@ object Dependencies {
     val monocle = "3.1.0"
     val refined = "0.9.28"
     val refinedPureconfig = "0.9.28"
-    val quill = "3.16.0"
+    val quill = "3.16.3"
+    val postgresJdbc = "42.3.3"
   }
 
   // Tapir
@@ -48,6 +49,9 @@ object Dependencies {
 
   // ZIO — Logging
   private lazy val zioLogging = "dev.zio" %% "zio-logging" % V.zioLogging
+
+  private lazy val zioLoggingSlf4jBridge =
+    "dev.zio" %% "zio-logging-slf4j-bridge" % V.zioLogging
 
   // ZIO — Monitoring
   private lazy val zioZmx = "dev.zio" %% "zio-zmx" % V.zioZmx
@@ -80,12 +84,14 @@ object Dependencies {
   private lazy val quill = "io.getquill" %% "quill-jdbc-zio" % V.quill
 
   // DB — Postgres
-  private lazy val postgresJdbc = "org.postgresql" % "postgresql" % "42.3.2"
+  private lazy val postgresJdbc =
+    "org.postgresql" % "postgresql" % V.postgresJdbc
 
   lazy val core: Seq[ModuleID] = Seq(
     zio,
     zioStreams,
     zioPrelude,
+    zioLogging,
     refined,
     quill
   ) ++ monocle
@@ -97,6 +103,7 @@ object Dependencies {
     tapirRefined,
     zioMagic,
     zioJson,
+    zioLoggingSlf4jBridge,
     pureconfig,
     refinedPureconfig,
     postgresJdbc

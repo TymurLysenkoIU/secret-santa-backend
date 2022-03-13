@@ -14,6 +14,8 @@ import sttp.tapir.ztapir._
 import zhttp.http.{Http, Request, Response}
 import zhttp.service.Server
 import zio._
+import zio.logging.Logging
+import zio.logging.slf4j.bridge.initializeSlf4jBridge
 import zio.magic._
 
 import java.net.InetAddress
@@ -21,7 +23,11 @@ import java.net.InetAddress
 object Main extends zio.App {
 
   private type Env =
-    ZEnv with Has[Counter] with Has[HttpServerConfig] with Has[PostgresConfig]
+    ZEnv
+      with Has[Counter]
+      with Has[HttpServerConfig]
+      with Has[PostgresConfig]
+      with Logging
 
   private val configLayer = for {
     _ <- ZLayer.succeed(())
@@ -91,7 +97,8 @@ object Main extends zio.App {
       .injectSome[ZEnv](
         CounterPostgres.layer,
         postgresDataSourceLayer,
-        configLayer
+        configLayer,
+        Logging.consoleErr() >>> initializeSlf4jBridge
       )
       .exitCode
 

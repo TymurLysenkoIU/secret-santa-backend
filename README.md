@@ -17,45 +17,80 @@ If you are using IntelliJ IDEA:
 
 #### Run API
 
-- [ ] TODO
+Before running the app, you need to set the appropriate config. See [Configs section](#configs).
+
+##### IDEA
+
+Go to `api/src/main/scala/io/santa/web/elves/Main.scala` and press the green triangle.
+
+##### Terminal (sbt)
+
+```shell
+sbt api/run
+```
+
+This will start an API server available at http://localhost:8956, if you copied the config from [Configs section](#configs).
 
 ### Build
 
-- [ ] TODO
+#### IDEA
+
+Just press the green build hummer.
+
+#### Terminal (sbt)
+
+```shell
+sbt compile
+```
 
 ### Test
 
-- [ ] TODO
+```shell
+sbt test
+```
 
 ### Lint
 
 #### Run scalafix
 
-- [ ] TODO
+```shell
+sbt scalafixAll
+```
 
 ### Format code
 
 #### Run scalafmt
 
-- [ ] TODO
+See the [official documentation](https://scalameta.org/scalafmt/docs/installation.html) on how to configure scalafix to format files on save.
+
+Format all files in the project manually:
+```shell
+sbt scalafmtAll
+```
 
 ## Project details
 
+The project uses [ZIO](https://zio.dev) effect system to structure the application code and implement asynchronous backend safely and efficiently.
+
 ### API
 
-- [ ] TODO: the project uses tapir to define API and interprets the description into zio-http server
+The project uses [tapir](https://tapir.softwaremill.com/en/latest/index.html) to define the endpoints and then interprets the definition to [zio-http](https://github.com/dream11/zio-http) server.
 
 ### Configs
 
-- [ ] TODO: describe `application.conf` and `application.local.conf`
+All the config needed to start the API resides in `application.conf`. To facilitate local development you can also create a file `applicaiton.local.conf` and override the values from the original config. The `applicaiton.local.conf` must not be committed (and is already ignored by default).
+
+To see what a config value means it is recommended to see how the config is used in `api/src/main/scala/io/santa/web/elves/Main.scala`.
 
 ### Database interaction
 
-- [ ] TODO: the app is designed to connect to postgres and run queries against it
+The app is designed to connect to postgres and run queries against it.
 
 #### Quill
 
-- [ ] TODO: quill is used to write queries, which are compiled to postgres SQL and executed
+[Quill](https://github.com/zio/zio-quill) is used to write queries in the code and execute them. Quill queries are compiled to Postres SQL queries and then executed.
+
+Under the hood it uses [Hikari Connection Pool](https://github.com/brettwooldridge/HikariCP) to manage database connection.
 
 ## CI
 
