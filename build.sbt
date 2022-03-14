@@ -14,7 +14,8 @@ ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 ThisBuild / scalafixScalaBinaryVersion := "2.13"
 
 lazy val commonSettings = Compiler.settings ++ Seq(
-  resolvers += Opts.resolver.sonatypeSnapshots
+  resolvers += Opts.resolver.sonatypeSnapshots,
+  Compile / doc / sources := Seq.empty // So that `sbt compile stage` works
 )
 
 lazy val root = (project in file("."))
@@ -45,3 +46,4 @@ lazy val api = (project in file("api"))
     name := "api",
     libraryDependencies := Dependencies.api
   )
+  .enablePlugins(JavaServerAppPackaging)
